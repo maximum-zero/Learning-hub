@@ -7,13 +7,13 @@ import org.maximum0.domain.Student;
 
 public class StudentRepository {
 
-  private final Map<String, Student> studentMap = new HashMap<>();
+    private final Map<String, Student> studentMap = new HashMap<>();
 
-  public void save(Student student) {
-    studentMap.put(student.getName(), student);
-  }
+    public void save(Student student) {
+        studentMap.put(student.getName(), student);
+    }
 
-  public Optional<Student> findByName(String name) {
-    return Optional.ofNullable(studentMap.get(name));
-  }
+    public Optional<Student> findByName(String name) {
+        return Optional.ofNullable(studentMap.get(name));
+    }
 }
