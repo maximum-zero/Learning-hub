@@ -1,11 +1,10 @@
 package org.maximum0.post.aplication.interfaces;
 
-import java.util.Optional;
 import org.maximum0.post.domain.comment.Comment;
 
 public interface CommentRepository {
 
     Comment save(Comment comment);
-    Optional<Comment> findById(Long id);
+    Comment findById(Long id);
 
 }

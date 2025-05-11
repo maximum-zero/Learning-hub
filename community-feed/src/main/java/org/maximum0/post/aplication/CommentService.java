@@ -9,7 +9,9 @@ import org.maximum0.post.domain.Post;
 import org.maximum0.post.domain.comment.Comment;
 import org.maximum0.user.application.UserService;
 import org.maximum0.user.domain.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CommentService {
     private final UserService userService;
     private final PostService postService;
@@ -25,7 +27,7 @@ public class CommentService {
     }
 
     public Comment getComment(Long id) {
-        return commentRepository.findById(id).orElseThrow(IllegalAccessError::new);
+        return commentRepository.findById(id);
     }
 
     public Comment createComment(CreateCommentRequestDto request) {
@@ -36,8 +38,8 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
-    public Comment updateComment(UpdateCommentRequestDto request) {
-        Comment comment = getComment(request.commentId());
+    public Comment updateComment(Long commentId, UpdateCommentRequestDto request) {
+        Comment comment = getComment(commentId);
         User user = userService.getUser(request.userId());
 
         comment.updateComment(user, request.content());
