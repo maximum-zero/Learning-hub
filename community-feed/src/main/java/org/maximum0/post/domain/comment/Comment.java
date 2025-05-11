@@ -10,10 +10,18 @@ public class Comment {
     private final Long id;
     private final Post post;
     private final User author;
-    private final CommentContent content;
+    private final Content content;
     private final PositiveCounter likeCount;
 
-    public Comment(Long id, Post post, User author, CommentContent content) {
+    public static Comment createComment(Post post, User author, String content) {
+        return new Comment(null, post, author, new CommentContent(content));
+    }
+
+    public static Comment createComment(Long id, Post post, User author, String content) {
+        return new Comment(id, post, author, new CommentContent(content));
+    }
+
+    protected Comment(Long id, Post post, User author, Content content) {
         if (author == null) {
             throw new IllegalArgumentException();
         }
@@ -49,6 +57,18 @@ public class Comment {
             throw new IllegalArgumentException();
         }
         this.content.updateContent(updateContent);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public User getAuthor() {
+        return author;
     }
 
     public String getContent() {

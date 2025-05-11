@@ -52,11 +52,23 @@ public class Post {
         this.content.updateContent(updateContent);
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
     public String getContent() {
         return content.getContentText();
     }
 
     public int getLikeCount() {
         return likeCount.getCount();
+    }
+
+    public PostPublicationState getState() {
+        return state;
     }
 }
