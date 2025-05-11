@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LikeIdEntity implements Serializable {
     private Long targetId;
-    private Long postId;
+    private Long userId;
     private String targetType;
 }
