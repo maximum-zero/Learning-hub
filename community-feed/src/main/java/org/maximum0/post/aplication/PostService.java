@@ -8,21 +8,22 @@ import org.maximum0.post.aplication.interfaces.PostRepository;
 import org.maximum0.post.domain.Post;
 import org.maximum0.user.application.UserService;
 import org.maximum0.user.domain.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PostService {
     private final UserService userService;
     private final PostRepository postRepository;
     private final LikeRepository likeRepository;
 
-    public PostService(UserService userService, PostRepository postRepository,
-            LikeRepository likeRepository) {
+    public PostService(UserService userService, PostRepository postRepository, LikeRepository likeRepository) {
         this.userService = userService;
         this.postRepository = postRepository;
         this.likeRepository = likeRepository;
     }
 
     public Post getPost(Long id) {
-        return postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Post not found"));
+        return postRepository.findById(id);
     }
 
     public Post createPost(CreatePostRequestDto request) {
@@ -31,8 +32,8 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public Post updatePost(UpdatePostRequestDto request) {
-        Post post = getPost(request.postId());
+    public Post updatePost(Long postId, UpdatePostRequestDto request) {
+        Post post = getPost(postId);
         User author = userService.getUser(request.userId());
 
         post.updatePost(author, request.content(), request.state());
