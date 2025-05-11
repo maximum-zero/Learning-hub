@@ -3,8 +3,8 @@ package org.maximum0.post.domain.content;
 import org.maximum0.post.domain.common.DateTime;
 
 public abstract class Content {
-    String contentText;
-    final DateTime datetime;
+    private String contentText;
+    private final DateTime datetime;
 
     public Content(String contentText) {
         checkedText(contentText);

@@ -56,7 +56,7 @@ class UserRelationServiceTest {
 
 
     @Test
-    void givenCreateOneUser_whenFollowSelf_thenUserThrowError() {
+    void givenCreateOneUser_whenFollowBySelf_thenUserThrowError() {
         // Given
         FollowUserRequestDto sameUser = request = new FollowUserRequestDto(user1.getId(), user1.getId());
 
@@ -87,7 +87,7 @@ class UserRelationServiceTest {
     }
 
     @Test
-    void givenCreateOneUser_whenUnfollowSelf_thenUserThrowError() {
+    void givenCreateOneUser_whenUnfollowBySelf_thenUserThrowError() {
         // Given
         FollowUserRequestDto sameUser = request = new FollowUserRequestDto(user1.getId(), user1.getId());
 
