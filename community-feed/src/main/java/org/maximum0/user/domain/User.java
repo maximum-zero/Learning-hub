@@ -10,6 +10,10 @@ public class User {
     private final PositiveCounter followerCount;
 
     public User(Long id, UserInfo userInfo) {
+        if (userInfo == null) {
+            throw new IllegalArgumentException();
+        }
+
         this.id = id;
         this.userInfo = userInfo;
         this.followerCount = new PositiveCounter();
@@ -22,7 +26,7 @@ public class User {
         }
 
         followingCount.increase();
-        increaseFollowerCount();
+        targetUser.increaseFollowerCount();
     }
 
     public void unFollow(User targetUser) {
@@ -30,20 +34,28 @@ public class User {
             throw new IllegalArgumentException();
         }
         followingCount.decrease();
-        decreaseFollowerCount();
+        targetUser.decreaseFollowerCount();
     }
 
     // 디미터의 법칙 - 자신의 소유 객체랑만 이야기 하는 것이 좋음 (캡슐화가 깨질 수 있음)
     private void increaseFollowerCount() {
-        followingCount.increase();
+        followerCount.increase();
     }
 
     private void decreaseFollowerCount() {
-        followingCount.decrease();
+        followerCount.decrease();
     }
 
     public Long getId() {
         return id;
+    }
+
+    public int getFollowingCount() {
+        return followingCount.getCount();
+    }
+
+    public int getFollowerCount() {
+        return followerCount.getCount();
     }
 
     @Override
