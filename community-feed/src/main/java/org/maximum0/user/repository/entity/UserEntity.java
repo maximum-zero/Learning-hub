@@ -8,6 +8,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 import org.maximum0.common.domain.PositiveCounter;
 import org.maximum0.common.repository.entity.TimeBaseEntity;
 import org.maximum0.user.domain.User;
@@ -18,6 +19,7 @@ import org.maximum0.user.domain.UserInfo;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@DynamicUpdate
 public class UserEntity extends TimeBaseEntity {
 
     @Id
