@@ -1,6 +1,7 @@
 package org.maximum0.post.domain;
 
 import org.maximum0.common.domain.PositiveCounter;
+import org.maximum0.post.domain.content.Content;
 import org.maximum0.post.domain.content.PostContent;
 import org.maximum0.post.domain.content.PostPublicationState;
 import org.maximum0.user.domain.User;
@@ -8,11 +9,19 @@ import org.maximum0.user.domain.User;
 public class Post {
     private final Long id;
     private final User author;
-    private final PostContent content;
+    private final Content content;
     private final PositiveCounter likeCount;
     private PostPublicationState state;
 
-    public Post(Long id, User author, PostContent content) {
+    public static Post createPost(Long id, User author, String content, PostPublicationState state) {
+        return new Post(id, author, new PostContent(content), state);
+    }
+
+    public static Post createPost(Long id, User author, String content) {
+        return new Post(id, author, new PostContent(content), PostPublicationState.PUBLIC);
+    }
+
+    protected Post(Long id, User author, Content content, PostPublicationState state) {
         if (author == null) {
             throw new IllegalArgumentException();
         }
@@ -21,7 +30,7 @@ public class Post {
         this.author = author;
         this.content = content;
         this.likeCount = new PositiveCounter();
-        this.state = PostPublicationState.PUBLIC;
+        this.state = state;
     }
 
     public void like(User user) {

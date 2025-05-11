@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 import org.maximum0.post.domain.Post;
 import org.maximum0.post.domain.content.CommentContent;
-import org.maximum0.post.domain.content.PostContent;
 import org.maximum0.user.domain.User;
 import org.maximum0.user.domain.UserInfo;
 
@@ -14,7 +13,7 @@ class CommentTest {
     private final UserInfo userInfo = new UserInfo("user", "");
     private final User user = new User(1L, userInfo);
     private final User otherUser = new User(2L, userInfo);
-    private final Post post = new Post(1L, user, new PostContent("content"));
+    private final Post post = Post.createPost(1L, user, "content");
     private final Comment comment = new Comment(1L, post, user, new CommentContent("comment content"));
 
     @Test

@@ -1,9 +1,9 @@
 package org.maximum0.post.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import org.maximum0.post.domain.content.PostContent;
 import org.maximum0.post.domain.content.PostPublicationState;
 import org.maximum0.user.domain.User;
 import org.maximum0.user.domain.UserInfo;
@@ -12,7 +12,7 @@ class PostTest {
     private final UserInfo userInfo = new UserInfo("user", "");
     private final User user = new User(1L, userInfo);
     private final User otherUser = new User(2L, userInfo);
-    private final Post post = new Post(1L, user, new PostContent("content"));
+    private final Post post = Post.createPost(1L, user, "content");
 
     @Test
     void givenPostCreated_whenLike_thenLikeCountShouldBe1() {
