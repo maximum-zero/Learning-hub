@@ -1,11 +1,18 @@
 package org.maximum0.post.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import org.maximum0.common.domain.PositiveCounter;
 import org.maximum0.post.domain.content.Content;
 import org.maximum0.post.domain.content.PostContent;
 import org.maximum0.post.domain.content.PostPublicationState;
 import org.maximum0.user.domain.User;
 
+
+@Getter
+@Builder
+@AllArgsConstructor
 public class Post {
     private final Long id;
     private final User author;
@@ -52,14 +59,6 @@ public class Post {
         this.content.updateContent(updateContent);
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
     public String getContent() {
         return content.getContentText();
     }
@@ -68,7 +67,4 @@ public class Post {
         return likeCount.getCount();
     }
 
-    public PostPublicationState getState() {
-        return state;
-    }
 }
