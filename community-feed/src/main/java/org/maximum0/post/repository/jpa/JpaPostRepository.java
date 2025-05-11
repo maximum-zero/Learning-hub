@@ -22,4 +22,12 @@ public interface JpaPostRepository extends JpaRepository<PostEntity, Long> {
             + "WHERE p.id = :#{#postEntity.getId()} ")
     void updatePostLikeCount(PostEntity postEntity);
 
+
+    @Modifying
+    @Query(value = "UPDATE PostEntity p "
+            + "SET p.commentCount = p.commentCount + 1, "
+            + "p.updateDt = now() "
+            + "WHERE p.id = :id ")
+    void increaseCommentCount(Long id);
+
 }
