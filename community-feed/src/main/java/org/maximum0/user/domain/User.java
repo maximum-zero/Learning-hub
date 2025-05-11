@@ -50,6 +50,10 @@ public class User {
         return id;
     }
 
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
     public int getFollowingCount() {
         return followingCount.getCount();
     }
